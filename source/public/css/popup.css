@@ -1,0 +1,76 @@
+﻿body {
+    height: 500px;
+    width:400px;
+    margin:0;
+    padding:0;
+}
+
+.title-bar {
+    background-color: #15171a;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height:80px;
+}
+
+.title-bar-icon {
+    height: 24px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border-color: #566275;
+}
+
+h1 {
+    color: antiquewhite;
+}
+
+
+/* 
+    Styling for Settings container
+
+    top-80px as this is where the title bar ends
+*/
+.settings-container {
+    position: absolute;
+    top: 80px;
+    height: 420px;
+    width: 100%;
+    background-color: #f5edce;
+    align-content: start;
+}
+
+.settings-panel {
+    
+}
+
+.settings-panel-tabs {
+    justify-content:space-around;
+    justify-items:stretch;
+    display:flex;
+    width:100%;
+}
+
+.settings-panel-tab {
+    cursor:pointer;
+    border:2px solid black;
+    width:33%;
+    text-align:center;
+}
+
+.settings-panel-details {
+    height:200px;
+    width:75%;
+}
+
+h2 {
+    font-size:40px;
+    padding-left:125px;
+}
+
+h3 {
+
+}
