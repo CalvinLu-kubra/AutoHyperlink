@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "AutoHyperlink9000",
+  "name": "AutoHyperlink",
   "version": "1.0",
   "description": "Automatically adds hyperlinks to ServiceNow text",
   "icons": {
@@ -19,7 +19,7 @@
   },
   "content_scripts": [
     {
-      "js": [ "source/Hyperlink.js" ],
+      "js": [ "source/Defaults.js", "source/Hyperlink.js" ],
       "matches": [ "<all_urls>" ],
       "all_frames": true,
       "run_at":  "document_end"
@@ -32,7 +32,8 @@
   "permissions": [
     "tabs",
     "scripting",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"

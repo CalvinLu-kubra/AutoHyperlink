@@ -40,30 +40,52 @@ h1 {
     height: 420px;
     width: 100%;
     background-color: #f5edce;
-    align-content: start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .settings-panel {
-    
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
 }
 
 .settings-panel-tabs {
-    justify-content:space-around;
-    justify-items:stretch;
-    display:flex;
-    width:100%;
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    border-bottom: 2px solid #15171a;
+}
+
+.tab-btn {
+    flex: 1;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-size: 14px;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    font-weight: bold;
+    border-bottom: 3px solid #15171a;
 }
 
 .settings-panel-tab {
-    cursor:pointer;
-    border:2px solid black;
-    width:33%;
-    text-align:center;
+    display: none;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 12px 16px;
 }
 
-.settings-panel-details {
-    height:200px;
-    width:75%;
+.settings-panel-tab.active {
+    display: block;
 }
 
 h2 {
@@ -71,6 +93,40 @@ h2 {
     padding-left:125px;
 }
 
-h3 {
+.prefix-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+}
 
+.prefix-remove-btn {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #a33;
+}
+
+.prefix-error {
+    display: block;
+    color: #a33;
+    font-size: 0.85em;
+    min-height: 1em;
+}
+
+.style-checkboxes {
+    border: none;
+    padding: 0;
+    margin: 8px 0 0;
+}
+
+.style-checkboxes legend {
+    padding: 0;
+    margin-bottom: 4px;
+    font-weight: normal;
+}
+
+.style-checkboxes label {
+    display: block;
+    padding: 2px 0;
 }
