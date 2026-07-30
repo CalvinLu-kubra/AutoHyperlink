@@ -71,7 +71,7 @@ const addPrefix = () => {
     }
 
     currentPrefixes.push(candidate);
-    chrome.storage.sync.set({ prefixes: currentPrefixes });
+    chrome.storage.local.set({ prefixes: currentPrefixes });
 
     setPrefixError('');
     newPrefixInput.value = '';
@@ -80,7 +80,7 @@ const addPrefix = () => {
 
 const removePrefix = (index) => {
     currentPrefixes.splice(index, 1);
-    chrome.storage.sync.set({ prefixes: currentPrefixes });
+    chrome.storage.local.set({ prefixes: currentPrefixes });
     renderPrefixList();
 };
 
@@ -94,19 +94,19 @@ newPrefixInput.addEventListener('keydown', (event) => {
 linkColorInput.addEventListener('input', updatePreview);
 
 saveColorBtn.addEventListener('click', () => {
-    chrome.storage.sync.set({ linkColor: linkColorInput.value });
+    chrome.storage.local.set({ linkColor: linkColorInput.value });
 });
 
 styleCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
         const selected = [...styleCheckboxes].filter((cb) => cb.checked).map((cb) => cb.value);
-        chrome.storage.sync.set({ linkStyles: selected });
+        chrome.storage.local.set({ linkStyles: selected });
         updatePreview();
     });
 });
 
 const init = async () => {
-    const items = await chrome.storage.sync.get(DEFAULTS);
+    const items = await chrome.storage.local.get(DEFAULTS);
 
     currentPrefixes = items.prefixes;
     renderPrefixList();

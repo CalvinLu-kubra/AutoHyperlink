@@ -12,7 +12,7 @@ to prevent modifying the surrounding structure. A link will then be inserted aro
 only the text that matched the defined regex.
 
 Prefixes and link appearance are user configurable via the popup and
-persisted to chrome.storage.sync (see Defaults.js for the shared default
+persisted to chrome.storage.local (see Defaults.js for the shared default
 values).
 */
 
@@ -122,7 +122,7 @@ const traverseAndModify = (node, re) => {
     }
 };
 
-chrome.storage.sync.get(DEFAULTS).then((items) => {
+chrome.storage.local.get(DEFAULTS).then((items) => {
     prefixes = items.prefixes;
     linkColor = items.linkColor;
     linkStyles = items.linkStyles;
@@ -133,7 +133,7 @@ chrome.storage.sync.get(DEFAULTS).then((items) => {
 });
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
-    if (areaName !== 'sync') {
+    if (areaName !== 'local') {
         return;
     }
 
