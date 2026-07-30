@@ -24,6 +24,13 @@
             <!-- Prefixes Panel -->
             <div class="settings-panel-tab active" data-panel="prefixes">
                 <div id="prefixes-list">
+                    <p class="panel-description">
+                        AutoHyperlink will scan pages for text that exactly matches the below prefixes followed by a 7-digit number.
+                        (e.g. If 'INC' is added as a prefix, then AutoHyperlink will match "INC1234567")
+                        <br />
+                        <br />
+                        ServiceNow hyperlinks will be inserted at where matches are found.
+                    </p>
                     <input type="text" id="new-prefix" placeholder="Add new prefix" />
                     <button id="add-prefix-btn">Add Prefix</button>
                     <span id="prefix-error" class="prefix-error" aria-live="polite"></span>
@@ -36,6 +43,9 @@
             <!-- Appearance Panel -->
             <div class="settings-panel-tab" data-panel="appearance">
                 <div id="appearance-settings">
+                    <p class="panel-description">
+                        Choose the color and text style used for the links AutoHyperlink inserts.
+                    </p>
                     <label for="link-color">Hyperlink Color:</label>
                     <input type="color" id="link-color" value="#ff0000" />
                     <button type="button" id="save-color-btn">Save</button>
@@ -46,6 +56,16 @@
                         <label><input type="checkbox" class="style-checkbox" value="bold" /> Bold</label>
                         <label><input type="checkbox" class="style-checkbox" value="italic" /> Italic</label>
                     </fieldset>
+
+                    <p class="preview-title">Previews</p>
+                    <div class="link-preview-container">
+                        <div class="link-preview link-preview-light">
+                            <a class="preview-link">INC1234567</a>
+                        </div>
+                        <div class="link-preview link-preview-dark">
+                            <a class="preview-link">INC1234567</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

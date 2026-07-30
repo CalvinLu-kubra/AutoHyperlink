@@ -18,6 +18,18 @@ const prefixError = document.getElementById('prefix-error');
 const linkColorInput = document.getElementById('link-color');
 const saveColorBtn = document.getElementById('save-color-btn');
 const styleCheckboxes = document.querySelectorAll('.style-checkbox');
+const previewLinks = document.querySelectorAll('.preview-link');
+
+const updatePreview = () => {
+    const enabled = new Set([...styleCheckboxes].filter((cb) => cb.checked).map((cb) => cb.value));
+
+    let style = `color: ${linkColorInput.value};`;
+    style += ` text-decoration: ${enabled.has('underline') ? 'underline' : 'none'};`;
+    style += ` font-weight: ${enabled.has('bold') ? 'bold' : 'normal'};`;
+    style += ` font-style: ${enabled.has('italic') ? 'italic' : 'normal'};`;
+
+    previewLinks.forEach((link) => link.setAttribute('style', style));
+};
 
 const renderPrefixList = () => {
     prefixList.innerHTML = '';
@@ -79,6 +91,8 @@ newPrefixInput.addEventListener('keydown', (event) => {
     }
 });
 
+linkColorInput.addEventListener('input', updatePreview);
+
 saveColorBtn.addEventListener('click', () => {
     chrome.storage.sync.set({ linkColor: linkColorInput.value });
 });
@@ -87,6 +101,7 @@ styleCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
         const selected = [...styleCheckboxes].filter((cb) => cb.checked).map((cb) => cb.value);
         chrome.storage.sync.set({ linkStyles: selected });
+        updatePreview();
     });
 });
 
@@ -100,6 +115,8 @@ const init = async () => {
     styleCheckboxes.forEach((checkbox) => {
         checkbox.checked = items.linkStyles.includes(checkbox.value);
     });
+
+    updatePreview();
 };
 
 init();
