@@ -7,10 +7,18 @@ This is a Chrome extension that scans web pages for ServiceNow catalog identifie
 ## Features
 
 - **Inserts Hyperlinks on Detected Catalog Items**: The extension scans and detects any text on a web page that **exactly** matches a ServiceNow catalog ID, and then wraps it in a hyperlink.
+
+![HyperlinkedText](images/FOR-README/HyperlinkedText.png)
+
 - **Automatic Rescans on Navigation**: The extension rescans a tab whenever it detects page navigation or URL change.
+
 - **Configurable ServiceNow Prefixes**: From the extension's popup settings, users can add or remove the ServiceNow catalog prefixes that the extension wills can for. The default set of prefixes upon installation includes: (`INC`, `CS`, `CSTASK`, `PRB`, `CHG`, `CTASK`, `KB`, `REQ`, `RITM`).
+
+![PrefixSettings](images/FOR-README/PrefixSettings.png)
+
 - **Configurable Hyperlink Appearance**: Users can customize the inserted hyperlinks' color, and combine any of underline / bold / italic text styling. A live preview with the hyperlink against both a light and dark background is included
 
+![AppearanceSettings](images/FOR-README/PrefixSettings.png)
 
 ## How it works
 
