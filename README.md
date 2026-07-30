@@ -12,13 +12,13 @@ This is a Chrome extension that scans web pages for ServiceNow catalog identifie
 
 - **Automatic Rescans on Navigation**: The extension rescans a tab whenever it detects page navigation or URL change.
 
-- **Configurable ServiceNow Prefixes**: From the extension's popup settings, users can add or remove the ServiceNow catalog prefixes that the extension wills can for. The default set of prefixes upon installation includes: (`INC`, `CS`, `CSTASK`, `PRB`, `CHG`, `CTASK`, `KB`, `REQ`, `RITM`).
+- **Configurable ServiceNow Prefixes**: From the extension's popup settings, users can add or remove the ServiceNow catalog prefixes that the extension will detect. The default set of prefixes upon installation includes: (`INC`, `CS`, `CSTASK`, `PRB`, `CHG`, `CTASK`, `KB`, `REQ`, `RITM`).
 
 ![PrefixSettings](images/FOR-README/PrefixSettings.png)
 
 - **Configurable Hyperlink Appearance**: Users can customize the inserted hyperlinks' color, and combine any of underline / bold / italic text styling. A live preview with the hyperlink against both a light and dark background is included
 
-![AppearanceSettings](images/FOR-README/PrefixSettings.png)
+![AppearanceSettings](images/FOR-README/AppearanceSettings.png)
 
 ## How it works
 
@@ -37,14 +37,20 @@ This is a Chrome extension that scans web pages for ServiceNow catalog identifie
 4. Click **Load unpacked** and select this project's root folder (the root folder would be the folder that contains the `manifest.json` file).
 5. Enable the extension and refresh your browser / open a new window for the extension to take effect. 
 
+## Accessing extension settings
+
+Click the puzzle icon on the top right of the browser (for both Chrome and Edge), and then click the AutoHyperlink extension. If the extension is pinned, then simply clicking the extension icon will open the menu.
+
+![OpeningSettings](images/FOR-README/AccessingSettingsPart1.png)
+
 ## Project structure
 
 ```
 manifest.json              
 source/
-  Hyperlink.js                 Content script: detects and links ticket IDs (further summarized in the "How it works" )
-  Background.js                Service worker: triggers re-scans on specific page events (further summarized in "How it works")
-  Defaults.js                  Shared default settings
+  Hyperlink.js                 Content script: scans and links catalog IDs 
+  Background.js                Background script: triggers re-scans on specific page events 
+  Defaults.js                  Default settings
   public/
     html/popup.html            Popup UI
     css/popup.css              Popup styling
