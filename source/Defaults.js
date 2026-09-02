@@ -6,5 +6,8 @@
 var DEFAULTS = {
     prefixes: ["INC", "CS", "CSTASK", "PRB", "CHG", "CTASK", "KB", "REQ", "RITM"],
     linkColor: "#ff0000",
-    linkStyles: ["underline", "bold"]
+    linkStyles: ["underline", "bold"],
+    // Off by default: editable fields (e.g. Gmail's compose box) are protected
+    // from hyperlink insertion unless the user opts in via the Behavior tab.
+    allowContentEditableLinks: false
 };

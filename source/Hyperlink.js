@@ -21,6 +21,7 @@ const serviceNowURL = "https://kubra.service-now.com/text_search_exact_match.do?
 let prefixes = DEFAULTS.prefixes;
 let linkColor = DEFAULTS.linkColor;
 let linkStyles = DEFAULTS.linkStyles;
+let allowContentEditableLinks = DEFAULTS.allowContentEditableLinks;
 let currentRegex = null;
 let settingsLoaded = false;
 
@@ -88,6 +89,13 @@ const traverseAndModify = (node, re) => {
     if (!re || !node.parentNode) {
         return;
     }
+    
+    //PATCH: Adding check to skip nodes with contentEditable = true to prevent hyperlink insertion
+    //on user editable elements such as Gmail compose email window. User-configurable via the
+    //Behavior tab (allowContentEditableLinks, defaults to off)
+    if (!allowContentEditableLinks && node.nodeType === Node.ELEMENT_NODE && node.isContentEditable) {
+        return;
+    }
 
     if (node.nodeType === Node.TEXT_NODE) {
         const text = node.nodeValue;
@@ -126,6 +134,7 @@ chrome.storage.local.get(DEFAULTS).then((items) => {
     prefixes = items.prefixes;
     linkColor = items.linkColor;
     linkStyles = items.linkStyles;
+    allowContentEditableLinks = items.allowContentEditableLinks;
     currentRegex = buildRegexFromPrefixes(prefixes);
     settingsLoaded = true;
 
@@ -140,6 +149,11 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
     if (changes.prefixes) {
         prefixes = changes.prefixes.newValue;
         currentRegex = buildRegexFromPrefixes(prefixes);
+        main();
+    }
+
+    if (changes.allowContentEditableLinks) {
+        allowContentEditableLinks = changes.allowContentEditableLinks.newValue;
         main();
     }
 

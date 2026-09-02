@@ -20,6 +20,8 @@ const saveColorBtn = document.getElementById('save-color-btn');
 const styleCheckboxes = document.querySelectorAll('.style-checkbox');
 const previewLinks = document.querySelectorAll('.preview-link');
 
+const allowContentEditableCheckbox = document.getElementById('allow-content-editable-checkbox');
+
 const updatePreview = () => {
     const enabled = new Set([...styleCheckboxes].filter((cb) => cb.checked).map((cb) => cb.value));
 
@@ -105,6 +107,10 @@ styleCheckboxes.forEach((checkbox) => {
     });
 });
 
+allowContentEditableCheckbox.addEventListener('change', () => {
+    chrome.storage.local.set({ allowContentEditableLinks: allowContentEditableCheckbox.checked });
+});
+
 const init = async () => {
     const items = await chrome.storage.local.get(DEFAULTS);
 
@@ -117,6 +123,8 @@ const init = async () => {
     });
 
     updatePreview();
+
+    allowContentEditableCheckbox.checked = items.allowContentEditableLinks;
 };
 
 init();
